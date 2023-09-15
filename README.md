@@ -1,58 +1,48 @@
-# MyWebApi Project
+# ProductManagerAPI Project
 
 ## Overview
-`MyWebApi` is a RESTful API designed to manage CRUD operations related to products. This API supports primary functions such as listing products, accessing a specific product, adding a new product, updating a product, and deleting a product.
+`ProductManagerAPI` is a RESTful API developed to facilitate CRUD operations pertaining to products. The API efficiently handles tasks such as listing, accessing, adding, updating, and deleting products.
 
 ## Features
 
 ### 1. CRUD Operations
-- **List All Products**: Lists all products.
-- **Get a Specific Product**: Retrieves a product with a specific ID.
-- **Create a Product**: Adds a new product.
-- **Update a Product**: Updates an existing product.
-- **Delete a Product**: Deletes an existing product.
+- **List All Products**: Fetches a comprehensive list of all products.
+- **Get a Specific Product**: Retrieves detailed information about a product identified by its ID.
+- **Create a Product**: Incorporates a new product entry into the system.
+- **Update a Product**: Modifies the details of an existing product.
+- **Delete a Product**: Removes a product from the system based on its ID.
 
 ### 2. Product Filtering
-Users can list specific products by filtering according to the product name.
+Provides users with the functionality to display products based on specific filtering criteria, primarily the product name.
 
 ### 3. Error Handling
-To ensure robustness and clarity for API users, the `MyWebApi` project employs the `ErrorHandlingMiddleware` for systematic error handling. This middleware captures unhandled exceptions as they propagate through the application pipeline. Based on the nature of the exception, an appropriate HTTP status code, ranging from 400 Bad Request to 500 Internal Server Error, is determined. The client then receives a structured JSON response, comprised of this status code and a descriptive error message. This design promotes consistent, informative feedback across all endpoints, regardless of the encountered issue.
+`ProductManagerAPI` ensures robust error feedback through the integration of the `ErrorHandlingMiddleware`. This middleware adeptly intercepts unhandled exceptions during request processing. Depending on the exception type, the system decides upon an apt HTTP status code, be it 400 Bad Request or 500 Internal Server Error, and subsequently furnishes the client with a systematically structured JSON response detailing the status code and a pertinent error message.
 
 ### 4. Swagger Integration
-Integration with Swagger for API documentation and testing.
+The API supports integration with Swagger, paving the way for streamlined API documentation and testing.
 
 ## Technical Details
 
 ### Dependencies
-- **MyWebApi.Repositories**: Used to manage database operations related to products.
-- **MyWebApi.Models**: Defines model structures that the API will use.
-- **Newtonsoft.Json**: Used for JSON operations.
-- **Swashbuckle.AspNetCore**: Provides Swagger integration for API documentation.
-
-## Error Handling in MyWebApi Project
-
-In the `MyWebApi` project, error handling is a critical aspect to ensure that our API users receive meaningful feedback when unexpected scenarios occur. By implementing custom middleware to catch these exceptions, the system guarantees a consistent and descriptive response format for any errors.
+- **ProductManagerAPI.Repositories**: A repository management module that oversees database operations related to products.
+- **ProductManagerAPI.Models**: This module offers defined model structures that the API harnesses.
+- **Newtonsoft.Json**: A tool for efficient JSON-related operations.
+- **Swashbuckle.AspNetCore**: Ensures seamless Swagger integration for enhanced API documentation.
 
 ### Middleware
 
 #### ErrorHandlingMiddleware
-The `ErrorHandlingMiddleware` is a custom middleware dedicated to capturing and processing unhandled exceptions. Here's how it works:
-
-1. **Exception Catching**: As the request travels through the middleware pipeline, any unhandled exceptions are caught by `ErrorHandlingMiddleware`.
-   
-2. **Determining HTTP Status Code**: The type of exception thrown determines the HTTP status code of the response. For instance, an `ArgumentException` translates to a 400 Bad Request, whereas a generic unhandled exception would result in a 500 Internal Server Error.
-   
-3. **Formatting the Response**: The error response is structured using the `ApiResponse` model. This ensures that the API's error responses are consistent, containing an HTTP status code and an error message extracted from the exception.
-   
-4. **Returning the Error Response**: The error details are serialized to JSON and sent back to the client.
-
-This middleware ensures that our API is resilient and communicates effectively with clients, even when things go wrong.
-
+Central to `ProductManagerAPI's` resilience is its `ErrorHandlingMiddleware`, a custom middleware dedicated to capturing and effectively processing unhandled exceptions. The workflow entails:
+1. **Exception Catching**: Captures any unhandled exceptions arising in the middleware pipeline.
+2. **Determining HTTP Status Code**: Matches the exception type to a corresponding HTTP status code. For instance, an `ArgumentException` would yield a 400 Bad Request.
+3. **Response Structuring**: Utilizes the `ApiResponse` model to mold the error response, ensuring standardized feedback that incorporates the HTTP status code and an elucidative error message.
+4. **Error Response Dispatch**: The crafted error details undergo JSON serialization before being dispatched to the client.
 
 ### Routes
-- `GET /api/products`: Lists all products.
-- `GET /api/products/{id}`: Retrieves a product with a specific ID.
-- `POST /api/products`: Adds a new product.
-- `PUT /api/products/{id}`: Updates an existing product.
-- `DELETE /api/products/{id}`: Deletes an existing product.
-- `GET /api/products/filter?name={name}`: Filters products by name.
+- `GET /api/products`: Displays all products.
+- `GET /api/products/{id}`: Extracts information about a product using its ID.
+- `POST /api/products`: Introduces a new product.
+- `PUT /api/products/{id}`: Updates details of an already listed product.
+- `DELETE /api/products/{id}`: Erases a specific product based on its ID.
+- `GET /api/products/filter?name={name}`: Enables product filtration based on name.
+
