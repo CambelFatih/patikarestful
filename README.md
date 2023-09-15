@@ -28,6 +28,7 @@ The API supports integration with Swagger, paving the way for streamlined API do
 - **ProductManagerAPI.Models**: This module offers defined model structures that the API harnesses.
 - **Newtonsoft.Json**: A tool for efficient JSON-related operations.
 - **Swashbuckle.AspNetCore**: Ensures seamless Swagger integration for enhanced API documentation.
+- **Microsoft.AspNetCore.JsonPatch**: for patch method
 
 ### Middleware
 
