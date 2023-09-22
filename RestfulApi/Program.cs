@@ -11,9 +11,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers().AddNewtonsoftJson();
 // ...
-builder.Services.AddScoped<JsonProductRepository>();
-builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<IProductRepository, JsonProductRepository>();
+builder.Services.AddScoped<IProductService, ProductService>();
+
 // ...
 var app = builder.Build();
 

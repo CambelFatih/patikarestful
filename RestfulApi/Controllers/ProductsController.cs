@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using MyWebApi.Models;
 using MyWebApi.Repositories;
 using Microsoft.AspNetCore.JsonPatch;
-using System.Linq;
 using MyWebApi.Services;
 namespace MyWebApi.Controllers
 {
@@ -11,10 +10,10 @@ namespace MyWebApi.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly JsonProductRepository _repository;
-        private readonly ProductService _productService;
+        private readonly IProductRepository _repository;
+        private readonly IProductService _productService;
 
-        public ProductsController(JsonProductRepository repository, ProductService productService)
+        public ProductsController(IProductRepository repository, IProductService productService)
         {
             _repository = repository;
             _productService = productService;
