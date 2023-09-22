@@ -1,9 +1,6 @@
 //Middlewares/ErrorHandlerMiddleware.cs
-using Microsoft.AspNetCore.Http;
 using MyWebApi.Helpers;
-using System;
 using System.Net;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace MyWebApi.Middlewares

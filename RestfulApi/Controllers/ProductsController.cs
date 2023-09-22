@@ -1,8 +1,8 @@
+//Controllers/ProductsController.cs
 using Microsoft.AspNetCore.Mvc;
 using MyWebApi.Models;
-using System.Collections.Generic;
-using System.Linq;
 using MyWebApi.Repositories;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace MyWebApi.Controllers
 {
@@ -39,7 +39,7 @@ namespace MyWebApi.Controllers
             return CreatedAtAction(nameof(GetById), new { id = createdProduct.Id }, createdProduct);
         }
 
-        // PUT: api/products/1
+        // PUT: api/products/1   UPDATE METHOD
         [HttpPut("{id}")]
         public IActionResult Update(int id, Product product)
         {
@@ -75,5 +75,48 @@ namespace MyWebApi.Controllers
 
             return products.Where(p => p.Name.Contains(name, StringComparison.OrdinalIgnoreCase));
         }
+        /// <summary>
+        /// Updates a product partially.
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     PATCH /Product
+        ///     [
+        ///       {
+        ///         "op": "replace",
+        ///         "path": "/Name",
+        ///         "value": "New Product Name"
+        ///       }
+        ///     ]
+        ///
+        /// </remarks>
+        [HttpPatch("{id}")]
+        public IActionResult Patch(int id, [FromBody] JsonPatchDocument<Product> patchDoc)
+        {
+            if (patchDoc == null)
+            {
+                return BadRequest();
+            }
+
+            var product = _repository.GetById(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            try
+            {
+                _repository.ApplyPatch(id, patchDoc);
+                return NoContent();
+            }
+            catch (Exception ex)  // Catch more specific exceptions if possible.
+            {
+                // Log the exception and return an error response.
+                return BadRequest(ex.Message);
+            }
+        }
+
+
     }
 }
