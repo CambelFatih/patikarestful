@@ -52,3 +52,6 @@ Central to `ProductManagerAPI's` resilience is its `ErrorHandlingMiddleware`, a 
 - `GET /api/products/search`: Search for products based on certain criteria.
 - `PATCH /api/products/{id}`: Partially update a product.
 
+#### Postmen requests that update only the Name field with Patch
+![patch](https://github.com/CambelFatih/patikarestful/assets/79880394/5896a0dc-81a4-4c65-8a4b-bb79d529e987)
+![md2](https://github.com/CambelFatih/patikarestful/assets/79880394/66cbc5ff-b649-4921-abe0-a32b6cc6d2bd)
