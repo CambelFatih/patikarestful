@@ -55,6 +55,36 @@ Central to `ProductManagerAPI's` resilience is its `ErrorHandlingMiddleware`, a 
 #### Postmen requests that update only the Name field with Patch
 ![patch](https://github.com/CambelFatih/patikarestful/assets/79880394/5896a0dc-81a4-4c65-8a4b-bb79d529e987)
 ![md2](https://github.com/CambelFatih/patikarestful/assets/79880394/66cbc5ff-b649-4921-abe0-a32b6cc6d2bd)
+
+## Endpoint
+
+`GET /api/products/search`
+
+## Parameters
+
+- **name** _(optional)_: Filters the products by their name. Example: `?name=Shirt`
+  
+- **orderBy** _(optional, default: 'Id')_: Specifies the property to order by. Valid options include `Id`, `Name`, `Price`, etc. Example: `?orderBy=Price`
+  
+- **ascending** _(optional, default: true)_: If set to `true`, products will be ordered in ascending order based on the `orderBy` property. If `false`, they will be ordered in descending order. Example: `?ascending=false`
+  
+- **page** _(optional, default: 1)_: The page number to return. Use this for pagination. Example: `?page=2`
+  
+- **pageSize** _(optional, default: 10)_: The number of products to return per page. Example: `?pageSize=5`
+
+## Usage in Swagger UI
+
+1. Navigate to the Swagger UI for MyWebApi.
+2. Under the "Products" section, find the "GET /api/products/search" endpoint.
+3. Click on the endpoint to expand it.
+4. You'll see input fields for each parameter. Enter the desired values:
+    - For `name`, you can input a substring or full product name.
+    - Use the dropdown for `orderBy` to select the desired ordering property.
+    - Toggle the checkbox for `ascending` to switch between ascending and descending order.
+    - Input the desired page number in `page`.
+    - Input the desired number of products per page in `pageSize`.
+5. Click "Execute" to run the request and view the results below.
+
 #### Sort in reverse order by id, pagination is page 1, with 4 elements on each page.
 ![search1](https://github.com/CambelFatih/patikarestful/assets/79880394/94983a22-12e2-4057-9eef-6d62295abd01)
 ![search2](https://github.com/CambelFatih/patikarestful/assets/79880394/5bea18ea-22f1-4684-a3aa-e43954ad9b5a)
