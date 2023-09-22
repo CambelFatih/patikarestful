@@ -23,12 +23,18 @@ The API supports integration with Swagger, paving the way for streamlined API do
 
 ## Technical Details
 
-### Dependencies
-- **ProductManagerAPI.Repositories**: A repository management module that oversees database operations related to products.
-- **ProductManagerAPI.Models**: This module offers defined model structures that the API harnesses.
-- **Newtonsoft.Json**: A tool for efficient JSON-related operations.
-- **Swashbuckle.AspNetCore**: Ensures seamless Swagger integration for enhanced API documentation.
-- **Microsoft.AspNetCore.JsonPatch**: for patch method
+## Dependencies
+
+This project is built with `.NET 7.0` and utilizes the following NuGet packages:
+
+- **Microsoft.AspNetCore.JsonPatch**: This library provides support for JSON Patch, a format for describing changes to a JSON document. We're using version `7.0.11`.
+- **Microsoft.AspNetCore.Mvc.NewtonsoftJson**: A compatibility pack to use `Newtonsoft.Json` as the JSON serializer for ASP.NET Core. Current version is `7.0.*`, indicating it uses the latest patch version of the `7.0` series.
+- **Microsoft.AspNetCore.OpenApi**: Enables OpenAPI features for the ASP.NET Core application, using version `7.0.9`.
+- **Newtonsoft.Json**: A popular high-performance JSON framework for .NET, used at version `13.0.3`.
+- **Swashbuckle.AspNetCore**: Integrates Swagger tools including the UI into an ASP.NET Core application. The version in use is `6.5.0`.
+
+Make sure to keep these packages updated for the latest features and bug fixes.
+
 
 ### Middleware
 
