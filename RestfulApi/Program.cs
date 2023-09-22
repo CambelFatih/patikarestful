@@ -5,16 +5,6 @@ using MyWebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddCors(options =>
-{
-    options.AddDefaultPolicy(builder =>
-    {
-        builder.AllowAnyOrigin()
-               .AllowAnyMethod()
-               .AllowAnyHeader();
-    });
-});
-
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -23,11 +13,8 @@ builder.Services.AddControllers().AddNewtonsoftJson();
 // ...
 builder.Services.AddScoped<JsonProductRepository>();
 builder.Services.AddScoped<ProductService>();
+builder.Services.AddScoped<IProductRepository, JsonProductRepository>();
 // ...
-
-
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

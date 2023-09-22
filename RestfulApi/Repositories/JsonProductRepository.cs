@@ -6,7 +6,7 @@ namespace MyWebApi.Repositories
 {
     // This class is responsible for providing CRUD operations on Products
     // which are stored in a JSON file. 
-    public class JsonProductRepository
+    public class JsonProductRepository : IProductRepository
     {
         // Specifies the path of the JSON file where products are stored.
         private const string FilePath = "./Data/products.json";
@@ -80,18 +80,6 @@ namespace MyWebApi.Repositories
         {
             var content = JsonConvert.SerializeObject(products);
             File.WriteAllText(FilePath, content);
-        }
-
-        // Fetches products based on a name filter.
-        // If the name is null or empty, all products are returned.
-        public IEnumerable<Product> GetFilteredProducts(string? name)
-        {
-            var products = GetAll();
-
-            if (string.IsNullOrEmpty(name))
-                return products;
-
-            return products.Where(p => p.Name.Contains(name, StringComparison.OrdinalIgnoreCase));
         }
 
         // Applies changes from the patch document to the specified product.

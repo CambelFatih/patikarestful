@@ -6,9 +6,9 @@ namespace MyWebApi.Services
 {
     public class ProductService
     {
-        private readonly JsonProductRepository _repository;
+        private readonly IProductRepository _repository;
 
-        public ProductService(JsonProductRepository repository)
+        public ProductService(IProductRepository repository)
         {
             _repository = repository;
         }
