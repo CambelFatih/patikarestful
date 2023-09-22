@@ -4,16 +4,13 @@
 `ProductManagerAPI` is a RESTful API developed to facilitate CRUD operations pertaining to products. The API efficiently handles tasks such as listing, accessing, adding, updating, and deleting products.
 
 ## Features
-
 ### 1. CRUD Operations
-- **List All Products**: Fetches a comprehensive list of all products.
-- **Get a Specific Product**: Retrieves detailed information about a product identified by its ID.
-- **Create a Product**: Incorporates a new product entry into the system.
-- **Update a Product**: Modifies the details of an existing product.
-- **Delete a Product**: Removes a product from the system based on its ID.
-
-### 2. Product Filtering
-Provides users with the functionality to display products based on specific filtering criteria, primarily the product name.
+- **CRUD Operations**: Complete CRUD (Create, Read, Update, Delete) operations for products.
+- **JSON Data Source**: Uses a JSON file as its data store, making it lightweight and easy to deploy.
+- **Service Layer**: Implements a service layer for business logic, ensuring that the API controllers remain clean and focused on request/response handling.
+- **Repository Pattern**: Utilizes the repository pattern for data access, providing flexibility to switch data sources in the future if needed.
+- **Search Capability**: Provides an endpoint for searching products based on criteria like name, order, and pagination.
+- **Partial Updates**: Implements the HTTP PATCH method to allow for partial updates of product records.
 
 ### 3. Error Handling
 `ProductManagerAPI` ensures robust error feedback through the integration of the `ErrorHandlingMiddleware`. This middleware adeptly intercepts unhandled exceptions during request processing. Depending on the exception type, the system decides upon an apt HTTP status code, be it 400 Bad Request or 500 Internal Server Error, and subsequently furnishes the client with a systematically structured JSON response detailing the status code and a pertinent error message.
@@ -46,10 +43,12 @@ Central to `ProductManagerAPI's` resilience is its `ErrorHandlingMiddleware`, a 
 4. **Error Response Dispatch**: The crafted error details undergo JSON serialization before being dispatched to the client.
 
 ### Routes
-- `GET /api/products`: Displays all products.
-- `GET /api/products/{id}`: Extracts information about a product using its ID.
-- `POST /api/products`: Introduces a new product.
-- `PUT /api/products/{id}`: Updates details of an already listed product.
-- `DELETE /api/products/{id}`: Erases a specific product based on its ID.
-- `GET /api/products/filter?name={name}`: Enables product filtration based on name.
+![md](https://github.com/CambelFatih/patikarestful/assets/79880394/84a337f1-ee5f-401c-a8c4-10a39b724adb)
+- `GET /api/products`: Retrieve all products.
+- `GET /api/products/{id}`: Retrieve a single product by ID.
+- `POST /api/products`: Create a new product.
+- `PUT /api/products/{id}`: Update an existing product.
+- `DELETE /api/products/{id}`: Delete a product.
+- `GET /api/products/search`: Search for products based on certain criteria.
+- `PATCH /api/products/{id}`: Partially update a product.
 
