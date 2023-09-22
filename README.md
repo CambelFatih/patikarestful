@@ -23,7 +23,7 @@ The API supports integration with Swagger, paving the way for streamlined API do
 
 ## Technical Details
 
-## Dependencies
+### Dependencies
 
 This project is built with `.NET 7.0` and utilizes the following NuGet packages:
 
