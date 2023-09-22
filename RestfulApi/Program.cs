@@ -1,5 +1,7 @@
 //program.cs
 using MyWebApi.Middlewares;
+using MyWebApi.Repositories;
+using MyWebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +20,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers().AddNewtonsoftJson();
+// ...
+builder.Services.AddScoped<JsonProductRepository>();
+builder.Services.AddScoped<ProductService>();
+// ...
+
+
 
 
 var app = builder.Build();

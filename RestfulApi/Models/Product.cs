@@ -1,5 +1,5 @@
+//Models/Products.cs
 using System.ComponentModel.DataAnnotations;
-
 namespace MyWebApi.Models
 {
     public class Product

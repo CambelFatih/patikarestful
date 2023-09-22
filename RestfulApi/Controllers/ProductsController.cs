@@ -3,15 +3,22 @@ using Microsoft.AspNetCore.Mvc;
 using MyWebApi.Models;
 using MyWebApi.Repositories;
 using Microsoft.AspNetCore.JsonPatch;
-
+using System.Linq;
+using MyWebApi.Services;
 namespace MyWebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly JsonProductRepository _repository = new JsonProductRepository();
+        private readonly JsonProductRepository _repository;
+        private readonly ProductService _productService;
 
+        public ProductsController(JsonProductRepository repository, ProductService productService)
+        {
+            _repository = repository;
+            _productService = productService;
+        }
         // GET: api/products
         [HttpGet]
         public ActionResult<IEnumerable<Product>> GetAll()
@@ -59,22 +66,21 @@ namespace MyWebApi.Controllers
             return NoContent();
         }
 
-        // GET: api/products/list?name=something
-        [HttpGet("list")]
-        public ActionResult<IEnumerable<Product>> GetFiltered([FromQuery] string? name)
+       [HttpGet("search")]
+        public ActionResult<IEnumerable<Product>> Search([FromQuery] string? name, [FromQuery] string orderBy = "Id", [FromQuery] bool ascending = true, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
-            return GetFilteredProducts(name).ToList();
+            try
+            {
+                var products = _productService.SearchProducts(name, orderBy, ascending, page, pageSize);
+                return products.ToList();
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
-        private IEnumerable<Product> GetFilteredProducts(string? name)
-        {
-            var products = _repository.GetAll();
 
-            if (string.IsNullOrEmpty(name))
-                return products;
-
-            return products.Where(p => p.Name.Contains(name, StringComparison.OrdinalIgnoreCase));
-        }
         /// <summary>
         /// Updates a product partially.
         /// </summary>
